@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import "./App.css";
 
 function App() {
-    const [input, setInput] = useState("");
+    const [text, setText] = useState("");
 
     const checkIfValid = (string) => {
         const numbers = /^\d+$/;
@@ -10,12 +10,10 @@ function App() {
     };
 
     const onChange = (ev) => {
-        setInput(ev.target.value);
+        setText(ev.target.value);
     }
 
-    const validator = useMemo(() => checkIfValid(input), [input]);
-
-    console.log(validator);
+    const validator = useMemo(() => checkIfValid(text), [text]);
 
     return (
         <div className="App">
@@ -24,7 +22,7 @@ function App() {
                     className="input is-large"
                     type="text"
                     placeholder="Enter number..."
-                    value={input}
+                    value={text}
                     onChange={(ev) => onChange(ev)}
                 />
                 <span className="icon is-small is-right">
