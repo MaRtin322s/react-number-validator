@@ -6,7 +6,7 @@ function App() {
 
     const checkIfValid = (string) => {
         const numbers = /^\d+$/;
-        return numbers.test(string);
+        return numbers.test(Number(string));
     };
 
     const onChange = (ev) => {
@@ -16,6 +16,8 @@ function App() {
     const validator = useMemo(() => {
         return checkIfValid(input);
     }, [input]);
+
+    console.log(validator);
 
     return (
         <div className="App">
