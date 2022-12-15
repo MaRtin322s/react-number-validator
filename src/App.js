@@ -1,14 +1,21 @@
+import { useMemo, useState } from "react";
 import "./App.css";
-import React, { useState, useMemo } from "react";
 
 function App() {
-    const [text, setText] = useState('');
+    const [input, setInput] = useState("");
+
     const checkIfValid = (string) => {
         const numbers = /^\d+$/;
         return numbers.test(string);
     };
 
-    const validator = useMemo(() => checkIfValid(text));
+    const onChange = (ev) => {
+        setInput(ev.target.value);
+    }
+
+    const validator = useMemo(() => {
+        return checkIfValid(input);
+    }, [input]);
 
     return (
         <div className="App">
@@ -17,11 +24,8 @@ function App() {
                     className="input is-large"
                     type="text"
                     placeholder="Enter number..."
-                    value={text}
-                    onChange={(e) => {
-                        setText(e.target.value);
-                    }}
-
+                    value={input}
+                    onChange={(ev) => onChange(ev)}
                 />
                 <span className="icon is-small is-right">
                     <i className={validator ? "fa-check" : "fas fa-times"} />
@@ -32,3 +36,4 @@ function App() {
 }
 
 export default App;
+
