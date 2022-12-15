@@ -6,16 +6,14 @@ function App() {
 
     const checkIfValid = (string) => {
         const numbers = /^\d+$/;
-        return numbers.test(Number(string));
+        return numbers.test(string);
     };
 
     const onChange = (ev) => {
         setInput(ev.target.value);
     }
 
-    const validator = useMemo(() => {
-        return checkIfValid(input);
-    }, [input]);
+    const validator = useMemo(() => checkIfValid(input), [input]);
 
     console.log(validator);
 
